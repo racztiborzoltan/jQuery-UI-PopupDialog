@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>jQuery UI Popup Dialog plugin </title>
+
+<!-- jQuery, jQuery UI -->
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+
+<!-- jQuery UI Theme Switcher Widget -->
+<script type="text/javascript" src="http://jqueryui.com/themeroller/themeswitchertool/"></script>
+
+<!-- jQuery UI Popup Dialogs -->
+<script type="text/javascript" src="jquery.ui.popupdialog.js"></script>
+
+</head>
+<body>
+
+<div id="switcher" style="margin-bottom:30px;"></div><script type="text/javascript">$('#switcher').themeswitcher();</script>
+
+<input name="alert1" type="button" value="alert1"/>
+<input name="alert2" type="button" value="alert2"/>
+<input name="alert3" type="button" value="alert3"/>
+
+<hr />
+
+<input name="confirm1" type="button" value="confirm1"/>
+<input name="confirm2" type="button" value="confirm2"/>
+
+<hr />
+
+<input name="prompt1" type="button" value="prompt1"/>
+<input name="prompt2" type="button" value="prompt2"/>
+
+
+<script type="text/javascript">
+$('input[type="button"]').button();
+
+$('input[name="alert1"]').click(function(){
+	$.popupDialog('alert', 'Lorem ipsum dolor sit amet.<br /> Donec bibendum tincidunt nunc in feugiat.');
+});
+
+$('input[name="alert2"]').click(function(){
+	$.popupDialog('alert', 'Lorem ipsum dolor sit amet.<br /> Donec bibendum tincidunt nunc in feugiat.', function(){window.alert('Alert OK!');});
+});
+
+// Full alert example:
+$('input[name="alert3"]').click(function(){
+	$.popupDialog('alert', {
+		title:'ALERT!',
+		content: 'Lorem ipsum dolor sit amet.<br /> Donec bibendum tincidunt nunc in feugiat.',
+		ok: function(){
+			window.alert('Alert OK!!  ' + $('.ui-button-text', this.ui).html() );
+		},
+		okText: 'Okay',
+		close: function(){ window.alert('CLOSE DIALOG'); },
+	});
+});
+
+
+$('input[name="confirm1"]').click(function(){
+	$.popupDialog('confirm', 'Confirm question???', function(){ window.alert('OK'); });
+});
+
+// Full confirm example
+$('input[name="confirm2"]').click(function(){
+	$.popupDialog('confirm', {
+		title: 'CONFIRM TITLE',
+		content:'Confirm question???',
+		ok: function(){
+			window.alert('OK');
+		},
+		okText: 'Okay',
+		cancel: function(){
+			window.alert('CANCEL');
+		},
+		cancelText: "D'oh!",
+		close: function(){ window.alert('CLOSE DIALOG'); },
+	});
+});
+
+
+$('input[name="prompt1"]').click(function(){
+	$.popupDialog('prompt', 'Please input data:', 300, function(){ 
+		window.alert( $('input[type="text"]' ,this.ui).val() ); 
+	});
+});
+
+// Full prompt example:
+$('input[name="prompt2"]').click(function(){
+	$.popupDialog('prompt', {
+		title: 'PROMPT TITLE',
+		content:'Please input data:',
+		ok: function(){
+			window.alert( $('input[type="text"]' ,this.ui).val() );
+		},
+		okText: 'Okay',
+		cancel: function(){
+			window.alert('CANCEL');
+		},
+		cancelText: "D'oh!",
+		close: function(){ window.alert('CLOSE DIALOG'); },
+		value: 400,
+	});
+});
+</script>
+
+</body>
+</html>
