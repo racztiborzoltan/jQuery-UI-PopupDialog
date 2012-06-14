@@ -2,9 +2,7 @@
  * 
  * jQuery UI Popup Dialogs (alert, confirm, prompt)
  * 
- * Based on: http://jvance.com/pages/jQueryOpenIdPlugin.xhtml
- * 
- * Szükséges:
+ * Requirements:
  * 	jQuery 1.7+
  * 	jQuery UI 1.8+ (jQuery UI Dialog)
  * 
