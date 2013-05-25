@@ -5,13 +5,17 @@
 <meta charset="UTF-8">
 <title>jQuery UI Popup Dialog plugin </title>
 
-<!-- jQuery, jQuery UI -->
-<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<!-- jQuery 1.10 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<!-- jQuery UI 1.10.2 -->
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/themes/base/jquery-ui.css" />
+<script id="jquery_ui_js" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
 
 <!-- jQuery UI Theme Switcher Widget -->
-<script type="text/javascript" src="http://jqueryui.com/themeroller/themeswitchertool/"></script>
+<script type="text/javascript" src="https://raw.github.com/harborhoffer/Super-Theme-Switcher/master/jquery.themeswitcher.min.js"></script>
 
 <!-- jQuery UI Popup Dialogs -->
 <script type="text/javascript" src="jquery.ui.popupdialog.js"></script>
@@ -19,7 +23,9 @@
 </head>
 <body>
 
-<div id="switcher" style="margin-bottom:30px;"></div><script type="text/javascript">$('#switcher').themeswitcher();</script>
+<div id="switcher" style="display:inline-block"></div>
+<hr style="margin-bottom: 3em;"/>
+
 
 <input name="alert1" type="button" value="alert1"/>
 <input name="alert2" type="button" value="alert2"/>
@@ -37,21 +43,27 @@
 
 
 <script type="text/javascript">
+$('#switcher').themeswitcher({
+	imgpath: "https://raw.github.com/harborhoffer/Super-Theme-Switcher/master/images/"
+});
+
 $('input[type="button"]').button();
 
+
+
 $('input[name="alert1"]').click(function(){
-	$.popupDialog('alert', 'Lorem ipsum dolor sit amet.<br /> Donec bibendum tincidunt nunc in feugiat.');
+	$.popupDialog('alert', 'Alert only with text');
 });
 
 $('input[name="alert2"]').click(function(){
-	$.popupDialog('alert', 'Lorem ipsum dolor sit amet.<br /> Donec bibendum tincidunt nunc in feugiat.', function(){window.alert('Alert OK!');});
+	$.popupDialog('alert', 'Alert with text and "OK" callback function', function(){window.alert('Alert OK!');});
 });
 
 // Full alert example:
 $('input[name="alert3"]').click(function(){
 	$.popupDialog('alert', {
 		title:'ALERT!',
-		content: 'Lorem ipsum dolor sit amet.<br /> Donec bibendum tincidunt nunc in feugiat.',
+		content: 'Full alert example',
 		ok: function(){
 			window.alert('Alert OK!!  ' + $('.ui-button-text', this.ui).html() );
 		},
